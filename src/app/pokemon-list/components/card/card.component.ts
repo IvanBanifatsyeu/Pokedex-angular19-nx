@@ -1,3 +1,4 @@
+import { PokemonWithImg } from './../../../core/models/pokemon.model'
 import { Component, Input } from '@angular/core'
 
 @Component({
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core'
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-  @Input() pokemon: any
+  @Input() pokemon!: PokemonWithImg
 }
