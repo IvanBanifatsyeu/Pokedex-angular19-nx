@@ -1,1 +1,8 @@
-<p>pokemon-list works!</p>
+<!-- <div *ngFor="let pokemon of pokemons">
+  <p>{{ pokemon.name }}</p>
+</div> -->
+<h1>pokemon-list works!</h1>
+
+<div class="pokemons">
+  <app-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-card>
+</div>
