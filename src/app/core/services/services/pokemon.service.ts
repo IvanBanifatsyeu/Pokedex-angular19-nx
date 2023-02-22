@@ -12,7 +12,15 @@ export class PokemonService {
   countPokemons$ = new BehaviorSubject<number>(0)
   countPokemons$$ = this.countPokemons$.asObservable()
   constructor(private http: HttpClient) {}
-  getPokemonList(offset: number, limit = 20) {
+  getPokemonList({
+    offset = 0,
+    limit = 20,
+    query = '',
+  }: {
+    offset?: number
+    limit?: number
+    query?: string
+  }) {
     return this.http.get<any>(`${this.baseUrl}pokemon?&limit=${limit}&offset=${offset}`).pipe(
       tap(res => this.countPokemons$.next(res.count)),
       map((data: any) => data.results),

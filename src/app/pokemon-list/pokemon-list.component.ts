@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { PokemonList } from '../core/models/pokemonList.model'
 import { DestroyService } from '../core/services/destroy.service'
-import { PokemonService } from './services/pokemon.service'
+import { PokemonService } from '../core/services/services/pokemon.service'
 import { Observable, takeUntil } from 'rxjs'
 import { Pokemon, PokemonWithImg } from '../core/models/pokemon.model'
 @Component({
@@ -19,7 +19,7 @@ export class PokemonListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.pokemonService
-      .getPokemonList(this.offset)
+      .getPokemonList({ offset: this.offset, limit: this.pokemonsPerPage })
       .pipe(takeUntil(this.destroyService.destory$$))
       .subscribe(pokemons => {
         this.pokemons = pokemons
@@ -36,7 +36,7 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     this.offset = newOffset
     this.pokemonsPerPage = newPokemonsPerPage
     this.pokemonService
-      .getPokemonList(newOffset, newPokemonsPerPage)
+      .getPokemonList({ offset: newOffset, limit: newPokemonsPerPage })
       .pipe(takeUntil(this.destroyService.destory$$))
       .subscribe(pokemons => {
         this.pokemons = pokemons
