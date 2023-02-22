@@ -1,4 +1,7 @@
-<app-pagination></app-pagination>
+<app-pagination
+  [length]="pokemonsCount | async"
+  (pokemonsCountRequest)="getPokemons($event)"
+></app-pagination>
 <div class="pokemons">
   <app-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-card>
 </div>

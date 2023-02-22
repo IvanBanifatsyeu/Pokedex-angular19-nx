@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator'
 
 @Component({
@@ -7,8 +7,10 @@ import { PageEvent } from '@angular/material/paginator'
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  length = 50
+  @Input() length!: number | null
+  @Output() pokemonsCountRequest = new EventEmitter<{ pageIndex: number; pageSize: number }>()
   pageSize = 20
+  pageSizeOptions = [5, 10, 25]
   pageIndex = 0
 
   hidePageSize = false
@@ -19,6 +21,7 @@ export class PaginationComponent {
   pageEvent!: PageEvent
 
   handlePageEvent(e: PageEvent) {
+    this.pokemonsCountRequest.emit({ pageSize: e.pageSize, pageIndex: e.pageIndex })
     this.pageEvent = e
     this.length = e.length
     this.pageSize = e.pageSize

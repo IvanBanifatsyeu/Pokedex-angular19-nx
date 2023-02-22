@@ -4,7 +4,7 @@
   (page)="handlePageEvent($event)"
   [length]="length"
   [pageSize]="pageSize"
-  [pageSizeOptions]="[]"
+  [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
   [pageIndex]="pageIndex"
   aria-label="Select page"
 >

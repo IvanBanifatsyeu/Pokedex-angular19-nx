@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { forkJoin, map, switchMap } from 'rxjs'
+import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs'
 import { Pokemon } from 'src/app/core/models/pokemon.model'
 import { PokemonList } from 'src/app/core/models/pokemonList.model'
 
@@ -9,9 +9,12 @@ import { PokemonList } from 'src/app/core/models/pokemonList.model'
 })
 export class PokemonService {
   baseUrl = 'https://pokeapi.co/api/v2/'
+  countPokemons$ = new BehaviorSubject<number>(0)
+  countPokemons$$ = this.countPokemons$.asObservable()
   constructor(private http: HttpClient) {}
   getPokemonList(offset: number, limit = 20) {
-    return this.http.get<any>(`${this.baseUrl}pokemon?&limit=${limit}`).pipe(
+    return this.http.get<any>(`${this.baseUrl}pokemon?&limit=${limit}&offset=${offset}`).pipe(
+      tap(res => this.countPokemons$.next(res.count)),
       map((data: any) => data.results),
       switchMap((res: { url: string; name: string }[]) => {
         return forkJoin(res.map(({ name }) => this.getPokemonCard(name)))
