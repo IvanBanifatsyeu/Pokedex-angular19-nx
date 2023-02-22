@@ -20,7 +20,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { SearchBarComponent } from './components/search-bar/search-bar.component'
 
-const components = [ShellComponent, PaginationComponent]
+const components = [ShellComponent, PaginationComponent, SearchBarComponent]
 const modules = [
   MatButtonModule,
   MatToolbarModule,

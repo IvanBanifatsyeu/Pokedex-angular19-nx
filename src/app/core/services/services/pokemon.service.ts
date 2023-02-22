@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs'
+import { BehaviorSubject, filter, forkJoin, map, switchMap, tap } from 'rxjs'
 import { Pokemon } from 'src/app/core/models/pokemon.model'
 import { PokemonList } from 'src/app/core/models/pokemonList.model'
 
@@ -25,7 +25,10 @@ export class PokemonService {
       tap(res => this.countPokemons$.next(res.count)),
       map((data: any) => data.results),
       switchMap((res: { url: string; name: string }[]) => {
-        return forkJoin(res.map(({ name }) => this.getPokemonCard(name)))
+        const filterRes = res.filter(pokemon => {
+          return query ? pokemon.name.slice(0, query.length) === query : pokemon
+        })
+        return forkJoin(filterRes.map(({ name }) => this.getPokemonCard(name)))
       })
     )
   }

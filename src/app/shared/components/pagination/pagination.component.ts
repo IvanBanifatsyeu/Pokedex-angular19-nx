@@ -9,6 +9,7 @@ import { PageEvent } from '@angular/material/paginator'
 export class PaginationComponent {
   @Input() length!: number | null
   @Output() pokemonsCountRequest = new EventEmitter<{ pageIndex: number; pageSize: number }>()
+
   pageSize = 20
   pageSizeOptions = [5, 10, 25]
   pageIndex = 0

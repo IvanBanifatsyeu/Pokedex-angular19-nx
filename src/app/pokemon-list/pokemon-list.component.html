@@ -1,3 +1,5 @@
+<app-search-bar (searchEvent)="getPokemons($event)"></app-search-bar>
+
 <app-pagination
   [length]="pokemonsCount | async"
   (pokemonsCountRequest)="getPokemons($event)"

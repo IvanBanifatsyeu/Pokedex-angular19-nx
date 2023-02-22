@@ -30,13 +30,14 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     this.destroyService.destroySubscriptions()
   }
   getPokemons(data: { pageSize?: number; pageIndex?: number; query?: string }) {
+    const newQuery = data.query ?? ''
     const newPokemonsPerPage = data?.pageSize ?? this.pokemonsPerPage
     const newOffsetIndex = data?.pageIndex ?? this.offset
     const newOffset = newOffsetIndex * newPokemonsPerPage
     this.offset = newOffset
     this.pokemonsPerPage = newPokemonsPerPage
     this.pokemonService
-      .getPokemonList({ offset: newOffset, limit: newPokemonsPerPage })
+      .getPokemonList({ offset: newOffset, limit: newPokemonsPerPage, query: newQuery })
       .pipe(takeUntil(this.destroyService.destory$$))
       .subscribe(pokemons => {
         this.pokemons = pokemons
