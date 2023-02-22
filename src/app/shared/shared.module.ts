@@ -17,14 +17,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { ShellComponent } from './components/shell/shell.component'
 import { FormsModule } from '@angular/forms'
 import { PaginationComponent } from './components/pagination/pagination.component'
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 const components = [ShellComponent, PaginationComponent]
 const modules = [
   MatButtonModule,
   MatToolbarModule,
   MatIconModule,
-  MatSidenavModule,
-  MatListModule,
+  MatPaginatorModule,
   MatMenuModule,
   MatCardModule,
   MatInputModule,

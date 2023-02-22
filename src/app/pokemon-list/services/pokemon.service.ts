@@ -21,7 +21,10 @@ export class PokemonService {
   getPokemonCard(pokemon: number | string) {
     return this.http.get<Pokemon>(`${this.baseUrl}pokemon/${pokemon}`).pipe(
       map(res => {
-        return { ...res, src: `https://pokeres.bastionbot.org/images/pokemon/${res.id}.png` }
+        return {
+          ...res,
+          src: `https://projectpokemon.org/images/normal-sprite/${res.name}.gif`,
+        }
       })
     )
   }
