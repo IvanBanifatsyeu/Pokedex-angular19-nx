@@ -11,7 +11,7 @@ export class PaginationComponent {
   @Output() pokemonsCountRequest = new EventEmitter<{ pageIndex: number; pageSize: number }>()
 
   pageSize = 20
-  pageSizeOptions = [5, 10, 25]
+  pageSizeOptions = [5, 10, 20]
   pageIndex = 0
 
   hidePageSize = false
