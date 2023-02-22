@@ -1,9 +1,11 @@
-<app-search-bar (searchEvent)="getPokemons($event)"></app-search-bar>
+<div class="container">
+  <app-search-bar (searchEvent)="getPokemons($event)"></app-search-bar>
+  <app-pagination
+    [length]="pokemonsCount | async"
+    (pokemonsCountRequest)="getPokemons($event)"
+  ></app-pagination>
+</div>
 
-<app-pagination
-  [length]="pokemonsCount | async"
-  (pokemonsCountRequest)="getPokemons($event)"
-></app-pagination>
-<div class="pokemons">
+<div class="container">
   <app-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-card>
 </div>
