@@ -6,9 +6,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./pokemon-list/pokemon-list.module').then(m => m.PokemonListModule),
   },
+
   {
-    path: 'pokemon',
-    loadChildren: () => import('./pokemon/pokemon.module').then(m => m.PokemonModule),
+    path: 'pokeball',
+    loadChildren: () => import('./pokeball/pokeball.module').then(m => m.PokeballModule),
   },
 ]
 

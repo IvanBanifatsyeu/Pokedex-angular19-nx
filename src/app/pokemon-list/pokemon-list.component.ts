@@ -1,4 +1,4 @@
-import { PokemonComponent } from './../pokemon/pokemon.component'
+import { PokemonComponent } from './components/pokemon/pokemon.component'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { DestroyService } from '../core/services/destroy.service'
