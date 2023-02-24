@@ -1,5 +1,5 @@
 import { PokemonWithImg } from './../../../core/models/pokemon.model'
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-card',
@@ -8,4 +8,8 @@ import { Component, Input } from '@angular/core'
 })
 export class CardComponent {
   @Input() pokemon!: PokemonWithImg
+  @Output() getPokemonEvent = new EventEmitter<PokemonWithImg>()
+  onGetPokemonClick() {
+    this.getPokemonEvent.emit(this.pokemon)
+  }
 }

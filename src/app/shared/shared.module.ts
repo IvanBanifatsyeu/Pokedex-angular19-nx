@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PaginationComponent } from './components/pagination/pagination.component'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { SearchBarComponent } from './components/search-bar/search-bar.component'
-
+import { MatDialogModule } from '@angular/material/dialog'
 const components = [ShellComponent, PaginationComponent, SearchBarComponent]
 const modules = [
   MatButtonModule,
@@ -33,6 +33,7 @@ const modules = [
   MatSnackBarModule,
   RouterModule,
   LayoutModule,
+  MatDialogModule,
 ]
 @NgModule({
   declarations: [...components, SearchBarComponent],

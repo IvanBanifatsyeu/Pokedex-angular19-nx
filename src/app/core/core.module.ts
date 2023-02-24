@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common'
 import { CoreRoutingModule } from './core-routing.module'
 import { CoreComponent } from './core.component'
 import { ReactiveFormsModule } from '@angular/forms'
-
+import {} from '@angular/material/dialog';
 @NgModule({
   declarations: [CoreComponent],
   imports: [CommonModule, CoreRoutingModule],

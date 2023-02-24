@@ -1,9 +1,10 @@
+import { PokemonComponent } from './../pokemon/pokemon.component'
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { PokemonList } from '../core/models/pokemonList.model'
+import { MatDialog } from '@angular/material/dialog'
 import { DestroyService } from '../core/services/destroy.service'
 
 import { Observable, takeUntil } from 'rxjs'
-import { Pokemon, PokemonWithImg } from '../core/models/pokemon.model'
+import { PokemonWithImg } from '../core/models/pokemon.model'
 import { PokemonService } from './services/pokemon.service'
 @Component({
   selector: 'app-pokemon-list',
@@ -16,7 +17,11 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   private pokemonsPerPage = 20
   pokemons!: PokemonWithImg[]
   pokemonsCount!: Observable<number>
-  constructor(private pokemonService: PokemonService, private destroyService: DestroyService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private destroyService: DestroyService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.pokemonService
@@ -33,7 +38,7 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   getPokemons(data: { pageSize?: number; pageIndex?: number; query?: string }) {
     const newQuery = data.query ?? ''
     const newPokemonsPerPage = data?.pageSize ?? this.pokemonsPerPage
-    const newOffsetIndex = data?.pageIndex ?? this.offset
+    const newOffsetIndex = data?.pageIndex ?? Math.floor(this.offset / newPokemonsPerPage)
     const newOffset = newOffsetIndex * newPokemonsPerPage
     this.offset = newOffset
     this.pokemonsPerPage = newPokemonsPerPage
@@ -43,5 +48,13 @@ export class PokemonListComponent implements OnInit, OnDestroy {
       .subscribe(pokemons => {
         this.pokemons = pokemons
       })
+  }
+  openDialog(pokemon: PokemonWithImg) {
+    /* this.pokemonService.getPokemonCard() */
+    this.dialog.open(PokemonComponent, {
+      data: {
+        pokemon,
+      },
+    })
   }
 }

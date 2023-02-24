@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module'
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
@@ -6,6 +7,6 @@ import { PokemonComponent } from './pokemon.component'
 
 @NgModule({
   declarations: [PokemonComponent],
-  imports: [CommonModule, PokemonRoutingModule],
+  imports: [CommonModule, PokemonRoutingModule, SharedModule],
 })
 export class PokemonModule {}
