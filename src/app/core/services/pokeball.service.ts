@@ -6,10 +6,16 @@ import { BehaviorSubject } from 'rxjs'
   providedIn: 'root',
 })
 export class PokeballService {
-  pokeball$ = new BehaviorSubject<PokemonWithImg[]>([])
+  pokeball$ = new BehaviorSubject<PokemonWithImg[]>(
+    JSON.parse(localStorage.getItem('pokeball') || '[]')
+  )
 
   addPokemon(pokemon: PokemonWithImg) {
     const oldState = this.pokeball$.getValue()
-    this.pokeball$.next([pokemon, ...oldState])
+    const isAddable = !this.pokeball$.getValue().find(pokemon => pokemon.id)
+    if (isAddable) {
+      localStorage.setItem('pokeball', JSON.stringify([pokemon, ...oldState]))
+      this.pokeball$.next([pokemon, ...oldState])
+    }
   }
 }

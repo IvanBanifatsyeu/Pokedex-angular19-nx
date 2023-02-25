@@ -15,6 +15,7 @@ import { PokemonService } from './services/pokemon.service'
 export class PokemonListComponent implements OnInit, OnDestroy {
   private offset = 0
   private pokemonsPerPage = 20
+  loading = false
   pokemons!: PokemonWithImg[]
   pokemonsCount!: Observable<number>
   constructor(
@@ -24,11 +25,13 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true
     this.pokemonService
       .getPokemonList({ offset: this.offset, limit: this.pokemonsPerPage })
       .pipe(takeUntil(this.destroyService.destory$$))
       .subscribe(pokemons => {
         this.pokemons = pokemons
+        this.loading = false
       })
     this.pokemonsCount = this.pokemonService.countPokemons$$
   }
@@ -36,6 +39,7 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     this.destroyService.destroySubscriptions()
   }
   getPokemons(data: { pageSize?: number; pageIndex?: number; query?: string }) {
+    this.loading = true
     const newQuery = data.query ?? ''
     const newPokemonsPerPage = data?.pageSize ?? this.pokemonsPerPage
     const newOffsetIndex = data?.pageIndex ?? Math.floor(this.offset / newPokemonsPerPage)
@@ -47,6 +51,7 @@ export class PokemonListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyService.destory$$))
       .subscribe(pokemons => {
         this.pokemons = pokemons
+        this.loading = false
       })
   }
   openDialog(pokemon: PokemonWithImg) {

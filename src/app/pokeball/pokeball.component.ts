@@ -11,6 +11,7 @@ import { PokeballService } from '../core/services/pokeball.service'
 export class PokeballComponent implements OnInit {
   pokeball$!: Observable<PokemonWithImg[]>
   constructor(private pokeballService: PokeballService) {}
+
   ngOnInit(): void {
     this.pokeball$ = this.pokeballService.pokeball$
   }

@@ -5,11 +5,19 @@
     (pokemonsCountRequest)="getPokemons($event)"
   ></app-pagination>
 </div>
-
-<div class="container">
-  <app-card
-    *ngFor="let pokemon of pokemons"
-    [pokemon]="pokemon"
-    (getPokemonEvent)="openDialog($event)"
-  ></app-card>
+<div class="centerLoader">
+  <mat-spinner *ngIf="loading; else content"></mat-spinner>
 </div>
+<ng-template #content>
+  <ng-container *ngIf="pokemons.length > 0; else noPokemons">
+    <div class="container">
+      <app-card
+        *ngFor="let pokemon of pokemons"
+        [pokemon]="pokemon"
+        (getPokemonEvent)="openDialog($event)"
+      ></app-card>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #noPokemons> <p>There is no pokemons, sorry</p> </ng-template>
