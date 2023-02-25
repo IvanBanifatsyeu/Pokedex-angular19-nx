@@ -1,0 +1,27 @@
+.container {
+  padding: 50px 0;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.example-card {
+  width: 300px;
+}
+
+.example-header-image {
+  width: 50px;
+  background-size: cover;
+}
+
+.img_size {
+  height: 150px;
+  object-fit: contain;
+}

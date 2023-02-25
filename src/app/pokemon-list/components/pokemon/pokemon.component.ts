@@ -1,5 +1,5 @@
 import { PokeballService } from './../../../core/services/pokeball.service'
-import { Component, Inject } from '@angular/core'
+import { Component, EventEmitter, Inject, Output } from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { PokemonWithImg } from '../../../core/models/pokemon.model'
 
@@ -12,11 +12,13 @@ export interface DialogData {
   styleUrls: ['./pokemon.component.scss'],
 })
 export class PokemonComponent {
+  @Output() addToPokeballEvent = new EventEmitter<PokemonWithImg>()
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private pokeballService: PokeballService
   ) {}
-  onAddToPokeballClick() {
-    console.log('')
+
+  addToPokeballClick() {
+    this.pokeballService.addPokemon(this.data.pokemon)
   }
 }
