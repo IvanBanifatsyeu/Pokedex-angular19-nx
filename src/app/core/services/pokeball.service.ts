@@ -12,7 +12,8 @@ export class PokeballService {
 
   addPokemon(pokemon: PokemonWithImg) {
     const oldState = this.pokeball$.getValue()
-    const isAddable = !this.pokeball$.getValue().find(pokemon => pokemon.id)
+    const isAddable = !this.pokeball$.getValue().find(poke => poke.id === pokemon.id)
+    console.log(oldState)
     if (isAddable) {
       localStorage.setItem('pokeball', JSON.stringify([pokemon, ...oldState]))
       this.pokeball$.next([pokemon, ...oldState])
