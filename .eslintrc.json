@@ -27,7 +27,8 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+         "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {
@@ -41,7 +42,8 @@
       "extends": ["plugin:prettier/recommended"],
       "rules": {
         // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
-        "prettier/prettier": ["error", { "parser": "angular" }]
+        "prettier/prettier": ["error", { "parser": "angular" }],
+        "@typescript-eslint/no-explicit-any": "off"
       }
     }
   ]
