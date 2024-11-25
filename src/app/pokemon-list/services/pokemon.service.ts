@@ -31,6 +31,7 @@ export class PokemonService {
       })
     )
   }
+
   getPokemonCard(pokemon: number | string) {
     return this.http.get<Pokemon>(`${this.baseUrl}pokemon/${pokemon}`).pipe(
       map(res => {
