@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, filter, forkJoin, map, switchMap, tap } from 'rxjs'
+import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs'
 import { Pokemon } from 'src/app/core/models/pokemon.model'
-import { PokemonList } from 'src/app/core/models/pokemonList.model'
 
 @Injectable({
   providedIn: 'root',
