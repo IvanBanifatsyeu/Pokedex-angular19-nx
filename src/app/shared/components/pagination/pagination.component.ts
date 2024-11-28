@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator'
 
 @Component({
-  selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
+    selector: 'app-pagination',
+    templateUrl: './pagination.component.html',
+    styleUrls: ['./pagination.component.scss'],
+    standalone: false
 })
 export class PaginationComponent {
   @Input() length!: number | null

@@ -7,9 +7,10 @@ export interface DialogData {
   pokemon: PokemonWithImg
 }
 @Component({
-  selector: 'app-pokemon',
-  templateUrl: './pokemon.component.html',
-  styleUrls: ['./pokemon.component.scss'],
+    selector: 'app-pokemon',
+    templateUrl: './pokemon.component.html',
+    styleUrls: ['./pokemon.component.scss'],
+    standalone: false
 })
 export class PokemonComponent {
   @Output() addToPokeballEvent = new EventEmitter<PokemonWithImg>()

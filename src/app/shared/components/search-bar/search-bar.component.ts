@@ -4,10 +4,11 @@ import { debounceTime, takeUntil, tap } from 'rxjs'
 import { DestroyService } from './../../../core/services/destroy.service'
 
 @Component({
-  selector: 'app-search-bar',
-  templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss'],
-  providers: [DestroyService],
+    selector: 'app-search-bar',
+    templateUrl: './search-bar.component.html',
+    styleUrls: ['./search-bar.component.scss'],
+    providers: [DestroyService],
+    standalone: false
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
   searchControl = new FormControl('')

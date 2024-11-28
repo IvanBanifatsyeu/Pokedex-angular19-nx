@@ -7,10 +7,11 @@ import { Observable, takeUntil } from 'rxjs'
 import { PokemonWithImg } from '../core/models/pokemon.model'
 import { PokemonService } from './services/pokemon.service'
 @Component({
-  selector: 'app-pokemon-list',
-  templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.scss'],
-  providers: [DestroyService],
+    selector: 'app-pokemon-list',
+    templateUrl: './pokemon-list.component.html',
+    styleUrls: ['./pokemon-list.component.scss'],
+    providers: [DestroyService],
+    standalone: false
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
   private offset = 0
