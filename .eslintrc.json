@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "plugins": ["prettier"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -42,8 +43,7 @@
       "extends": ["plugin:prettier/recommended"],
       "rules": {
         // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
-        "prettier/prettier": ["error", { "parser": "angular" }],
-        "@typescript-eslint/no-explicit-any": "off"
+        "prettier/prettier": ["error", { "parser": "angular" }]
       }
     }
   ]

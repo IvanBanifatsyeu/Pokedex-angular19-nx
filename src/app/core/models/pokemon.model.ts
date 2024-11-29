@@ -1,43 +1,43 @@
 export interface Pokemon {
-  id: number
-  order: number
-  name: string
-  height: number
-  abilities: Ability[]
-  spices: Species
-  types: Type[]
-  weight: number
-  sprites: Sprite
-  stats: Stat[]
+  id: number;
+  order: number;
+  name: string;
+  height: number;
+  abilities: Ability[];
+  spices: Species;
+  types: Type[];
+  weight: number;
+  sprites: Sprite;
+  stats: Stat[];
 }
 export interface PokemonWithImg extends Pokemon {
-  src: string
+  src: string;
 }
 
 interface Ability {
   ability: {
-    name: string
-  }
+    name: string;
+  };
 }
 
 interface Species {
-  url: string
+  url: string;
 }
 
 interface Type {
-  slot: number
+  slot: number;
   type: {
-    name: string
-  }
+    name: string;
+  };
 }
 
 interface Sprite {
-  front_default: string
+  front_default: string;
 }
 
 interface Stat {
-  base_stat: number
+  base_stat: number;
   stat: {
-    name: string
-  }
+    name: string;
+  };
 }
