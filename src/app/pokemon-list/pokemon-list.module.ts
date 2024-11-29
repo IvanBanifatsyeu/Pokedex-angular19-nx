@@ -12,7 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [PokemonListComponent, CardComponent, PokemonComponent],
+  declarations: [PokemonListComponent, CardComponent],
   imports: [
     CommonModule,
     PokemonListRoutingModule,
@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
     PaginationComponent,
     MatProgressSpinnerModule,
     MatCardModule,
+    PokemonComponent,
   ],
 })
 export class PokemonListModule {}
