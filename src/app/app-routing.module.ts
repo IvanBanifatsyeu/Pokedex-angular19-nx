@@ -9,7 +9,7 @@ const routes: Routes = [
 
   {
     path: 'pokeball',
-    loadChildren: () => import('./pokeball/pokeball.module').then(m => m.PokeballModule),
+    loadComponent: () => import('./pokeball/pokeball.component').then(m => m.PokeballComponent),
   },
 ];
 
