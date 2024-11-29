@@ -8,6 +8,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { ShellComponent } from './shared/components/shell/shell.component';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { PaginationComponent } from './shared/components/pagination/pagination.component';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { PaginationComponent } from './shared/components/pagination/pagination.c
     ShellComponent,
     SearchBarComponent,
     PaginationComponent,
+    PokemonListComponent,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
