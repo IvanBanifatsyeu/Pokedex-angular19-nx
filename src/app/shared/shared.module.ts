@@ -14,12 +14,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { ShellComponent } from './components/shell/shell.component';
-import { SharedRoutingModule } from './shared-routing.module';
-const components = [ShellComponent, PaginationComponent, SearchBarComponent];
+
+const components = [PaginationComponent, SearchBarComponent];
 const modules = [
   MatButtonModule,
   MatToolbarModule,
@@ -30,14 +28,13 @@ const modules = [
   MatInputModule,
   MatFormFieldModule,
   MatSnackBarModule,
-  RouterModule,
   LayoutModule,
   MatDialogModule,
   MatProgressSpinnerModule,
 ];
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, FormsModule, SharedRoutingModule, ReactiveFormsModule, ...modules],
-  exports: [...components, ...modules, SharedRoutingModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...modules],
+  exports: [...components, ...modules],
 })
 export class SharedModule {}
