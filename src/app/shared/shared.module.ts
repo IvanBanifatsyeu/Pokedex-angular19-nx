@@ -15,9 +15,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
-const components = [PaginationComponent, SearchBarComponent];
+const components = [PaginationComponent];
 const modules = [
   MatButtonModule,
   MatToolbarModule,
