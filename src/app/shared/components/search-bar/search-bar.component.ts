@@ -1,4 +1,4 @@
-import { Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, tap } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
   imports: [MatIconModule, MatFormFieldModule, ReactiveFormsModule, CommonModule, MatInputModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent implements OnInit {
   searchControl = new FormControl('');

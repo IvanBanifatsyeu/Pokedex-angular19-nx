@@ -1,5 +1,5 @@
 import { PokeballService } from './../../../core/services/pokeball.service';
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PokemonWithImg } from '../../../core/models/pokemon.model';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +13,7 @@ export interface DialogData {
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss'],
   imports: [MatCardModule, CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonComponent {
   @Output() addToPokeballEvent = new EventEmitter<PokemonWithImg>();
