@@ -6,12 +6,25 @@ import { DestroyService } from '../core/services/destroy.service';
 import { Observable, takeUntil } from 'rxjs';
 import { PokemonWithImg } from '../core/models/pokemon.model';
 import { PokemonService } from './services/pokemon.service';
+import { CommonModule } from '@angular/common';
+import { SearchBarComponent } from '../shared/components/search-bar/search-bar.component';
+import { PaginationComponent } from '../shared/components/pagination/pagination.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { CardComponent } from './components/card/card.component';
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
   providers: [DestroyService],
-  standalone: false,
+  imports: [
+    CommonModule,
+    SearchBarComponent,
+    PaginationComponent,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    CardComponent,
+  ],
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
   private offset = 0;
