@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PokemonWithImg } from '../core/models/pokemon.model';
 import { PokeballService } from '../core/services/pokeball.service';
@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './pokeball.component.html',
   styleUrls: ['./pokeball.component.scss'],
   imports: [CommonModule, MatCardModule, RouterModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokeballComponent implements OnInit {
   pokeball$!: Observable<PokemonWithImg[]>;
