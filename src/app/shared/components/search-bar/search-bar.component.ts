@@ -29,18 +29,16 @@ export class SearchBarComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   constructor(
     private formBuilder: FormBuilder,
-    private cdRef: ChangeDetectorRef
   ) {}
   ngOnInit() {
     this.searchControl.valueChanges
       .pipe(
-        debounceTime(1000),
-        tap(searchText => this.searchEvent.emit({ query: searchText ?? '' })),
+        debounceTime(300),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe(() => this.cdRef.detectChanges());
+      .subscribe(searchText => this.searchEvent.emit({ query: searchText ?? '' }));
   }
   clear() {
-    this.searchControl = this.formBuilder.control('');
+    this.searchControl.reset();
   }
 }

@@ -55,7 +55,7 @@ export class PokemonListComponent implements OnInit {
       .subscribe(pokemons => {
         this.pokemons = pokemons;
         this.loading = false;
-        this.cdRef.detectChanges();
+        this.cdRef.markForCheck();
       });
     this.pokemonsCount = this.pokemonService.countPokemons$$;
   }
@@ -74,7 +74,7 @@ export class PokemonListComponent implements OnInit {
       .subscribe(pokemons => {
         this.pokemons = pokemons;
         this.loading = false;
-        this.cdRef.detectChanges();
+        this.cdRef.markForCheck();
       });
   }
   openDialog(pokemon: PokemonWithImg) {
