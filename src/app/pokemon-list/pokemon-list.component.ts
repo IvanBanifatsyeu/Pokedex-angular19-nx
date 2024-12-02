@@ -1,5 +1,12 @@
 import { PokemonComponent } from './components/pokemon/pokemon.component';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Observable } from 'rxjs';
@@ -36,7 +43,8 @@ export class PokemonListComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   constructor(
     private pokemonService: PokemonService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +55,7 @@ export class PokemonListComponent implements OnInit {
       .subscribe(pokemons => {
         this.pokemons = pokemons;
         this.loading = false;
+        this.cdRef.detectChanges();
       });
     this.pokemonsCount = this.pokemonService.countPokemons$$;
   }
@@ -65,6 +74,7 @@ export class PokemonListComponent implements OnInit {
       .subscribe(pokemons => {
         this.pokemons = pokemons;
         this.loading = false;
+        this.cdRef.detectChanges();
       });
   }
   openDialog(pokemon: PokemonWithImg) {

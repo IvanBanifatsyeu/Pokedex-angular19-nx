@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, tap } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +27,10 @@ export class SearchBarComponent implements OnInit {
   searchControl = new FormControl('');
   @Output() searchEvent = new EventEmitter<{ query: string }>();
   destroyRef = inject(DestroyRef);
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private cdRef: ChangeDetectorRef
+  ) {}
   ngOnInit() {
     this.searchControl.valueChanges
       .pipe(
@@ -26,7 +38,7 @@ export class SearchBarComponent implements OnInit {
         tap(searchText => this.searchEvent.emit({ query: searchText ?? '' })),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe();
+      .subscribe(() => this.cdRef.detectChanges());
   }
   clear() {
     this.searchControl = this.formBuilder.control('');
