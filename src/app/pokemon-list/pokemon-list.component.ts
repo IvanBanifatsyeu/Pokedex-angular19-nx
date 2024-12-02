@@ -1,8 +1,8 @@
 import { PokemonComponent } from './components/pokemon/pokemon.component';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Observable, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PokemonWithImg } from '../core/models/pokemon.model';
 import { PokemonService } from './services/pokemon.service';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,8 @@ import { PaginationComponent } from '../shared/components/pagination/pagination.
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { CardComponent } from './components/card/card.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -30,6 +32,7 @@ export class PokemonListComponent implements OnInit {
   loading = false;
   pokemons!: PokemonWithImg[];
   pokemonsCount!: Observable<number>;
+  destroyRef = inject(DestroyRef);
   constructor(
     private pokemonService: PokemonService,
     public dialog: MatDialog
@@ -39,7 +42,7 @@ export class PokemonListComponent implements OnInit {
     this.loading = true;
     this.pokemonService
       .getPokemonList({ offset: this.offset, limit: this.pokemonsPerPage })
-      .pipe()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(pokemons => {
         this.pokemons = pokemons;
         this.loading = false;
@@ -57,7 +60,7 @@ export class PokemonListComponent implements OnInit {
     this.pokemonsPerPage = newPokemonsPerPage;
     this.pokemonService
       .getPokemonList({ offset: newOffset, limit: newPokemonsPerPage, query: newQuery })
-      .pipe()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(pokemons => {
         this.pokemons = pokemons;
         this.loading = false;
