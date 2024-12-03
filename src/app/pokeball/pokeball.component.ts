@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokeballComponent implements OnInit {
-  pokeball$!: Observable<PokemonWithImg[]>;
+  public pokeball$!: Observable<PokemonWithImg[]>;
   private pokeballService = inject(PokeballService);
 
   ngOnInit(): void {

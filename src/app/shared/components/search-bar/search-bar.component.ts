@@ -23,9 +23,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent implements OnInit {
-  searchControl = new FormControl('');
+  public searchControl = new FormControl('');
   @Output() searchEvent = new EventEmitter<{ query: string }>();
-  destroyRef = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.searchControl.valueChanges

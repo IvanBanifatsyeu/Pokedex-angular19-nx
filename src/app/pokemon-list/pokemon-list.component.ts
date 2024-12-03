@@ -37,10 +37,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class PokemonListComponent implements OnInit {
   private offset = 0;
   private pokemonsPerPage = 20;
-  loading = false;
-  pokemons!: PokemonWithImg[];
-  pokemonsCount!: Observable<number>;
-  destroyRef = inject(DestroyRef);
+  public loading = false;
+  public  pokemons!: PokemonWithImg[];
+  public pokemonsCount!: Observable<number>;
+  private destroyRef = inject(DestroyRef);
   private pokemonService = inject(PokemonService);
   public dialog = inject(MatDialog);
   private cdRef = inject(ChangeDetectorRef);
