@@ -1,8 +1,8 @@
 <div class="container">
   <a mat-button routerLink="/">Back to pokedex</a>
   <div class="list">
-    <ng-container *ngIf="(pokeball$ | async)?.length !== 0; else noPokemons">
-      <mat-card class="example-card" *ngFor="let pokemon of pokeball$ | async">
+    @for (pokemon of pokeball$ | async; track pokemon.id) {
+      <mat-card class="example-card">
         <mat-card-header>
           <div
             mat-card-avatar
@@ -19,10 +19,8 @@
           alt="Photo of pokemon {{ pokemon.name }}"
         />
       </mat-card>
-    </ng-container>
+    } @empty {
+      <p>Why do you still not have pokemon?!</p>
+    }
   </div>
 </div>
-
-<ng-template #noPokemons>
-  <p>Why do you still not have pokemon?!</p>
-</ng-template>
