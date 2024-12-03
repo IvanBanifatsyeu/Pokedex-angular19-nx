@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -6,6 +6,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
   imports: [MatPaginatorModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
   @Input() length!: number | null;
