@@ -7,9 +7,9 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
   providedIn: 'root',
 })
 export class PokemonService {
-  baseUrl = 'https://pokeapi.co/api/v2/';
-  countPokemons$ = new BehaviorSubject<number>(0);
-  countPokemons$$ = this.countPokemons$.asObservable();
+  private readonly baseUrl = 'https://pokeapi.co/api/v2/';
+  private countPokemons$ = new BehaviorSubject<number>(0);
+  public countPokemons$$ = this.countPokemons$.asObservable();
   constructor(private http: HttpClient) {}
   getPokemonList({
     offset = 0,

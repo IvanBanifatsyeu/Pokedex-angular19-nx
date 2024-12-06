@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PokemonWithImg } from '../core/models/pokemon.model';
 import { PokeballService } from '../core/services/pokeball.service';
@@ -15,8 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokeballComponent implements OnInit {
-  pokeball$!: Observable<PokemonWithImg[]>;
-  constructor(private pokeballService: PokeballService) {}
+  public pokeball$!: Observable<PokemonWithImg[]>;
+  private pokeballService = inject(PokeballService);
 
   ngOnInit(): void {
     this.pokeball$ = this.pokeballService.pokeball$;
