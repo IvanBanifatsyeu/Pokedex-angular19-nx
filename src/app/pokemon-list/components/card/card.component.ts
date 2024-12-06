@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { PokemonWithImg } from './../../../core/models/pokemon.model';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   imports: [CommonModule, MatCardModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
   @Input() pokemon!: PokemonWithImg;
