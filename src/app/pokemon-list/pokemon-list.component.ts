@@ -38,7 +38,7 @@ export class PokemonListComponent implements OnInit {
   private offset = 0;
   private pokemonsPerPage = 20;
   public loading = false;
-  public  pokemons!: PokemonWithImg[];
+  public pokemons!: PokemonWithImg[];
   public pokemonsCount!: Observable<number>;
   private destroyRef = inject(DestroyRef);
   private pokemonService = inject(PokemonService);

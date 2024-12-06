@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { Pokemon } from 'src/app/core/models/pokemon.model';
 
@@ -10,7 +10,7 @@ export class PokemonService {
   private readonly baseUrl = 'https://pokeapi.co/api/v2/';
   private countPokemons$ = new BehaviorSubject<number>(0);
   public countPokemons$$ = this.countPokemons$.asObservable();
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
   getPokemonList({
     offset = 0,
     limit = 20,
