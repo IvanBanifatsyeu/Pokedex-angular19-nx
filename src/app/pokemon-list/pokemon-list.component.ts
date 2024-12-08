@@ -55,7 +55,7 @@ export class PokemonListComponent implements OnInit {
         this.loading = false;
         this.cdRef.markForCheck();
       });
-    this.pokemonsCount = this.pokemonService.countPokemons$$;
+    this.pokemonsCount = this.pokemonService.countPokemons$;
   }
 
   getPokemons(data: { pageSize?: number; pageIndex?: number; query?: string }) {
