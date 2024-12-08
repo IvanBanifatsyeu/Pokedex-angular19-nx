@@ -17,7 +17,7 @@ export interface DialogData {
 })
 export class PokemonComponent {
   @Output() addToPokeballEvent = new EventEmitter<PokemonWithImg>();
-  private pokeballService = inject(PokeballService);
+  private readonly pokeballService = inject(PokeballService);
   public readonly data = inject(MAT_DIALOG_DATA);
 
   addToPokeballClick() {

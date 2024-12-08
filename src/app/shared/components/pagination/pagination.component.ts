@@ -13,13 +13,9 @@ export class PaginationComponent {
   @Output() pokemonsCountRequest = new EventEmitter<{ pageIndex: number; pageSize: number }>();
 
   public pageSize = 20;
-  public pageSizeOptions = [5, 10, 20];
+  public readonly pageSizeOptions = [5, 10, 20];
   public pageIndex = 0;
-
-  public hidePageSize = false;
-  public showPageSizeOptions = true;
-  public showFirstLastButtons = true;
-  public disabled = false;
+  public readonly showPageSizeOptions = true;
 
   handlePageEvent(e: PageEvent) {
     this.pokemonsCountRequest.emit({ pageSize: e.pageSize, pageIndex: e.pageIndex });

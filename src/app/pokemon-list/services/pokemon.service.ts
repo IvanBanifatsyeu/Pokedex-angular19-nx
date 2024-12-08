@@ -8,8 +8,8 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
 })
 export class PokemonService {
   private readonly baseUrl = 'https://pokeapi.co/api/v2/';
-  public countPokemons$ = new BehaviorSubject<number>(0);
-  private http = inject(HttpClient);
+  public readonly countPokemons$ = new BehaviorSubject<number>(0);
+  private readonly http = inject(HttpClient);
   getPokemonList({
     offset = 0,
     limit = 20,

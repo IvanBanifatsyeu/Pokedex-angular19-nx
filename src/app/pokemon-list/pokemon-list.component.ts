@@ -40,10 +40,10 @@ export class PokemonListComponent implements OnInit {
   public loading = false;
   public pokemons!: PokemonWithImg[];
   public pokemonsCount!: Observable<number>;
-  private destroyRef = inject(DestroyRef);
-  private pokemonService = inject(PokemonService);
-  public dialog = inject(MatDialog);
-  private cdRef = inject(ChangeDetectorRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly pokemonService = inject(PokemonService);
+  public readonly dialog = inject(MatDialog);
+  private readonly cdRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.loading = true;
