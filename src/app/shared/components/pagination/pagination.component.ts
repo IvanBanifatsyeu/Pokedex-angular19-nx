@@ -21,11 +21,8 @@ export class PaginationComponent {
   public showFirstLastButtons = true;
   public disabled = false;
 
-  pageEvent!: PageEvent;
-
   handlePageEvent(e: PageEvent) {
     this.pokemonsCountRequest.emit({ pageSize: e.pageSize, pageIndex: e.pageIndex });
-    this.pageEvent = e;
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
