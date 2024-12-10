@@ -1,7 +1,7 @@
 <div class="container">
   <app-search-bar (searchEvent)="getPokemons($event)"></app-search-bar>
   <app-pagination
-    [length]="pokemonsCount | async"
+    [length]="pokemonsCount"
     (pokemonsCountRequest)="getPokemons($event)"
   ></app-pagination>
 </div>
