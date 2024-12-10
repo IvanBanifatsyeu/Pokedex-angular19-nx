@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
+import { forkJoin, map, switchMap } from 'rxjs';
 import { Pokemon } from 'src/app/core/models/pokemon.model';
 
 @Injectable({
@@ -8,7 +8,6 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
 })
 export class PokemonService {
   private readonly baseUrl = 'https://pokeapi.co/api/v2/';
-  public readonly countPokemons$ = new BehaviorSubject<number>(0);
   private readonly http = inject(HttpClient);
   getPokemonList({
     offset = 0,
@@ -20,13 +19,14 @@ export class PokemonService {
     query?: string;
   }) {
     return this.http.get<any>(`${this.baseUrl}pokemon?&limit=${limit}&offset=${offset}`).pipe(
-      tap(res => this.countPokemons$.next(res.count)),
-      map((data: any) => data.results),
-      switchMap((res: { url: string; name: string }[]) => {
-        const filterRes = res.filter(pokemon => {
+      map((data: any) => ({ res: data.results, count: data.count })),
+      switchMap((data: { res: { url: string; name: string }[]; count: number }) => {
+        const filterRes = data.res.filter(pokemon => {
           return query ? pokemon.name.slice(0, query.length) === query : pokemon;
         });
-        return forkJoin(filterRes.map(({ name }) => this.getPokemonCard(name)));
+        return forkJoin(filterRes.map(({ name }) => this.getPokemonCard(name))).pipe(
+          map(res => ({ res, count: data.count }))
+        );
       })
     );
   }

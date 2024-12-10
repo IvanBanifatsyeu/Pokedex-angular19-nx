@@ -8,8 +8,6 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
-import { Observable } from 'rxjs';
 import { PokemonWithImg } from '../core/models/pokemon.model';
 import { PokemonService } from './services/pokemon.service';
 import { CommonModule } from '@angular/common';
@@ -39,7 +37,7 @@ export class PokemonListComponent implements OnInit {
   private pokemonsPerPage = 20;
   public loading = false;
   public pokemons!: PokemonWithImg[];
-  public pokemonsCount!: Observable<number>;
+  public pokemonsCount!: number;
   private readonly destroyRef = inject(DestroyRef);
   private readonly pokemonService = inject(PokemonService);
   public readonly dialog = inject(MatDialog);
@@ -50,12 +48,12 @@ export class PokemonListComponent implements OnInit {
     this.pokemonService
       .getPokemonList({ offset: this.offset, limit: this.pokemonsPerPage })
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(pokemons => {
-        this.pokemons = pokemons;
+      .subscribe(data => {
+        this.pokemonsCount = data.count;
+        this.pokemons = data.res;
         this.loading = false;
         this.cdRef.markForCheck();
       });
-    this.pokemonsCount = this.pokemonService.countPokemons$;
   }
 
   getPokemons(data: { pageSize?: number; pageIndex?: number; query?: string }) {
@@ -69,14 +67,13 @@ export class PokemonListComponent implements OnInit {
     this.pokemonService
       .getPokemonList({ offset: newOffset, limit: newPokemonsPerPage, query: newQuery })
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(pokemons => {
-        this.pokemons = pokemons;
+      .subscribe(data => {
+        this.pokemons = data.res;
         this.loading = false;
         this.cdRef.markForCheck();
       });
   }
   openDialog(pokemon: PokemonWithImg) {
-    /* this.pokemonService.getPokemonCard() */
     this.dialog.open(PokemonComponent, {
       data: {
         pokemon,
