@@ -12,7 +12,10 @@
     @if (pokemons.length > 0) {
       <div class="container">
         @for (pokemon of pokemons; track pokemon.id) {
-          <app-card [pokemon]="pokemon" (getPokemonEvent)="openDialog($event)"></app-card>
+          <app-card
+            [pokemon]="pokemon"
+            (getPokemonEvent)="openDialog($event)"
+          ></app-card>
         }
       </div>
     } @else {
