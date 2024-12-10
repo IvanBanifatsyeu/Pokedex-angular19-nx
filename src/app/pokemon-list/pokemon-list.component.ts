@@ -37,15 +37,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class PokemonListComponent implements OnInit {
   private offset = 0;
   private pokemonsPerPage = 20;
-  loading = false;
-  pokemons!: PokemonWithImg[];
-  pokemonsCount!: Observable<number>;
-  destroyRef = inject(DestroyRef);
-  constructor(
-    private pokemonService: PokemonService,
-    public dialog: MatDialog,
-    private cdRef: ChangeDetectorRef
-  ) {}
+  public loading = false;
+  public pokemons!: PokemonWithImg[];
+  public pokemonsCount!: Observable<number>;
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly pokemonService = inject(PokemonService);
+  public readonly dialog = inject(MatDialog);
+  private readonly cdRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.loading = true;
@@ -57,7 +55,7 @@ export class PokemonListComponent implements OnInit {
         this.loading = false;
         this.cdRef.markForCheck();
       });
-    this.pokemonsCount = this.pokemonService.countPokemons$$;
+    this.pokemonsCount = this.pokemonService.countPokemons$;
   }
 
   getPokemons(data: { pageSize?: number; pageIndex?: number; query?: string }) {

@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class PokeballService {
-  pokeball$ = new BehaviorSubject<PokemonWithImg[]>(
+  public readonly pokeball$ = new BehaviorSubject<PokemonWithImg[]>(
     JSON.parse(localStorage.getItem('pokeball') || '[]')
   );
 
